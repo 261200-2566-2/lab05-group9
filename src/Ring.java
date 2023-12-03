@@ -1,12 +1,15 @@
 public class Ring implements Accessories{
     private String name,type;
     private int level;
-    private double bonus;
+    private double bonusMana;
+    private double bonusSpeed;
 
     Ring(String name,int level){
         this.name = name;
         this.level = level;
         type = "Ring";
+        bonusMana = 13 * (1+0.7*level);
+        bonusSpeed = 0.7 * level;
     }
 
     @Override
@@ -26,12 +29,20 @@ public class Ring implements Accessories{
 
     @Override
     public void AccUpdateStatus(RPGcharacter player) {
-        bonus = 13 * (1+0.7*level);
-        player.MaxMana += (int) bonus;
+        player.MaxMana += (int) bonusMana;
+        player.MaxSpeed += (int) bonusSpeed;
+        player.baseSpeed = player.MaxSpeed;
     }
 
     @Override
     public String getBonus() {
-        return "Bonus from " + name + " [ " + type + " ] "+" : +"  + String.format("%.1f",bonus) + " MaxMana";
+        return "Bonus from " + name + " [ " + type + " ] "+" : +"  + String.format("%.1f",bonusMana) + " MaxMana";
+    }
+    public int getSpeedbonus(){
+        return (int)bonusSpeed;
+    }
+
+    public int getManabonus(){
+        return  (int)bonusMana;
     }
 }

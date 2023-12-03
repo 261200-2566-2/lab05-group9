@@ -1,12 +1,14 @@
 public class Wrist implements Accessories{
     private String name,type;
     private int level;
-    private double bonus;
+    private double bonus,AtkBonus;
 
     Wrist(String name,int level){
         this.name = name;
         this.level = level;
         type = "Wrist";
+        bonus = 10 * (1+0.7*level);
+        AtkBonus = (6 * (1+0.7*level));
     }
     @Override
     public int getLevel() {
@@ -25,7 +27,6 @@ public class Wrist implements Accessories{
 
     @Override
     public void AccUpdateStatus(RPGcharacter player) {
-        bonus = 10 * (1+0.7*level);
         player.damage += bonus;
     }
 
@@ -34,7 +35,10 @@ public class Wrist implements Accessories{
         return "Bonus from " + name + " [ " + type + " ] "+" : +"  + String.format("%.1f",bonus) + " dmg";
     }
 
-    public double AtkBonus(){
-        return 6 * (1+0.7*level);
+    public int AtkBonus(){
+        return (int)AtkBonus;
+    }
+    public int getDamageBonus(){
+        return (int)bonus;
     }
 }

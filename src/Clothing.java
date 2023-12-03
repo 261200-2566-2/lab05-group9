@@ -8,6 +8,8 @@ public class Clothing implements Accessories{
         this.name = name;
         this.level = level;
         type = "Clothing";
+        bonus = 15 * (1+0.8*level);
+        healBonus =(8*(1+0.02*level));
     }
 
     @Override
@@ -27,7 +29,6 @@ public class Clothing implements Accessories{
 
     @Override
     public void AccUpdateStatus(RPGcharacter player) {
-        bonus = 15 * (1+0.8*level);
         player.defense += bonus;
     }
 
@@ -36,7 +37,10 @@ public class Clothing implements Accessories{
         return "Bonus from " + name + " [ " + type + " ] "+" : +"  + String.format("%.1f",bonus) + " def";
     }
 
-    public double healBonus(){
-        return 8*(1+0.02*level);
+    public int gethealBonus(){
+        return (int)healBonus;
+    }
+    public int getDefBonus(){
+        return (int)bonus;
     }
 }

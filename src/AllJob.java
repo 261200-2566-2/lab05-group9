@@ -12,6 +12,7 @@ public class AllJob implements Job{
                 player.MaxSpeed += 50 * (1 + 0.01 * player.getLevel());
                 player.baseSpeed = player.MaxSpeed;
                 player.damage += 70 * (1 + 0.01 * player.getLevel());
+
             }
             case "Swordsman" -> {
                 player.job = "Swordsman";

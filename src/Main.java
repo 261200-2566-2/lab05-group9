@@ -25,16 +25,16 @@ public class Main {
         Wrist w4 = new Wrist("Zephyr Wristwhisper",10);
         Wrist w5 = new Wrist("Celestia Wristlight",7);
 
-        Clothing c1 = new Clothing("Celestial Silk Vestments",3);
+        Clothing c1 = new Clothing("Celestial Vestments",3);
         Clothing c2 = new Clothing("Lunar Veil Cloak",4);
         Clothing c3 = new Clothing("Obsidian Blackplate",7);
         Clothing c4 = new Clothing("Lunar Veil Cloak",1);
-        Clothing c5 = new Clothing("Thunderstruck Raiment",8);
+        Clothing c5 = new Clothing("Thunder Raiment",8);
 
         Ring r1 = new Ring("Arcane Whisper Band",3);
         Ring r2 = new Ring("Enigmatic Onyx Band",5);
         Ring r3 = new Ring("Verdant Vitality Ring",9);
-        Ring r4 = new Ring("Thunderstrike Resonance Ring",6);
+        Ring r4 = new Ring("Resonance Ring",6);
         Ring r5 = new Ring("Frostbite Circlet",8);
 
 
