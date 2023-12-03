@@ -16,7 +16,7 @@ public class AllJob implements Job{
             }
             case "Swordsman" -> {
                 player.job = "Swordsman";
-                player.MaxHp += (int) (250 * (1 + 0.01 * player.getLevel()));
+                player.MaxHp += (int) (240 * (1 + 0.01 * player.getLevel()));
                 player.CurrentHp = player.MaxHp;
                 player.defense += 125 * (1 + 0.01 * player.getLevel());
                 player.MaxMana += (int) (70 * (1 + 0.01 * player.getLevel()));
@@ -38,14 +38,14 @@ public class AllJob implements Job{
             }
             case "Assassin" -> {
                 player.job = "Assassin";
-                player.MaxHp += (int) (130 * (1 + 0.01 * player.getLevel()));
+                player.MaxHp += (int) (110 * (1 + 0.01 * player.getLevel()));
                 player.CurrentHp = player.MaxHp;
                 player.defense += 90 * (1 + 0.01 * player.getLevel());
                 player.MaxMana += (int) (90 * (1 + 0.01 * player.getLevel()));
                 player.CurrentMana = player.MaxMana;
                 player.MaxSpeed += 210 * (1 + 0.01 * player.getLevel());
                 player.baseSpeed = player.MaxSpeed;
-                player.damage += 220 * (1 + 0.01 * player.getLevel());
+                player.damage += 240 * (1 + 0.01 * player.getLevel());
             }
         }
 

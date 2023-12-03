@@ -2,11 +2,6 @@
 public class Main {
     public static void main(String[] args) {
 
-        RPGcharacter p1 = new RPGcharacter("Lnwza007");
-        RPGcharacter p2 = new RPGcharacter("Zoro");
-        RPGcharacter p3 = new RPGcharacter("Thorfinn");
-        RPGcharacter p4 = new RPGcharacter("Kirito");
-
         Sword s1 = new Sword("ดาบไทย",20);
         Sword s2 = new Sword("Muramasa",110,9);
         Sword s3 = new Sword("Excalibur",1000,25);
@@ -19,23 +14,23 @@ public class Main {
         Shield sh4 = new Shield("Emberguard Shield",70,5);
         Shield sh5 = new Shield("Viper's Shieldwall",30);
 
-        Wrist w1 = new Wrist("Seraph Wristblade",4);
+        Wrist w1 = new Wrist("Seraph Wristblade",1);
         Wrist w2 = new Wrist("Thorne Wristlock",2);
         Wrist w3 = new Wrist("Nebula Wristnova",5);
-        Wrist w4 = new Wrist("Zephyr Wristwhisper",10);
-        Wrist w5 = new Wrist("Celestia Wristlight",7);
+        Wrist w4 = new Wrist("Zephyr Wristwhisper",8);
+        Wrist w5 = new Wrist("Celestia Wristlight",10);
 
-        Clothing c1 = new Clothing("Celestial Vestments",3);
+        Clothing c1 = new Clothing("Celestial Vestments",1);
         Clothing c2 = new Clothing("Lunar Veil Cloak",4);
-        Clothing c3 = new Clothing("Obsidian Blackplate",7);
-        Clothing c4 = new Clothing("Lunar Veil Cloak",1);
-        Clothing c5 = new Clothing("Thunder Raiment",8);
+        Clothing c3 = new Clothing("Obsidian Blackplate",5);
+        Clothing c4 = new Clothing("Lunar Veil Cloak",8);
+        Clothing c5 = new Clothing("Thunder Raiment",10);
 
-        Ring r1 = new Ring("Arcane Whisper Band",3);
+        Ring r1 = new Ring("Arcane Whisper Band",2);
         Ring r2 = new Ring("Enigmatic Onyx Band",5);
         Ring r3 = new Ring("Verdant Vitality Ring",9);
-        Ring r4 = new Ring("Resonance Ring",6);
-        Ring r5 = new Ring("Frostbite Circlet",8);
+        Ring r4 = new Ring("Resonance Ring",10);
+        Ring r5 = new Ring("Frostbite Circlet",12);
 
 
         RPGcharacter.AddAccessories(r1,c1,w1);
@@ -54,7 +49,7 @@ public class Main {
         //RPGcharacter.PrintSword();
 
         RPGcharacter.Start();
-        RPGcharacter.PrintSword();
+        //RPGcharacter.PrintSword();
 
 
 //        p1.AddItem(s1);

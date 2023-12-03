@@ -1,4 +1,4 @@
 public interface Action {
-    void Attack(RPGcharacter player);
+    void Attack(RPGcharacter playerAT,RPGcharacter playerDF);
     void Heal();
 }
