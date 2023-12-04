@@ -1,7 +1,5 @@
-
-public class Main {
+public class Lab05 {
     public static void main(String[] args) {
-
         Sword s1 = new Sword("ดาบไทย",20);
         Sword s2 = new Sword("Muramasa",18);
         Sword s3 = new Sword("Excalibur",600,11);
@@ -46,6 +44,5 @@ public class Main {
         RPGcharacter.AddSwordandShield(s5,sh5);
 
         RPGcharacter.Start();
-
     }
 }
