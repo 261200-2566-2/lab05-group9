@@ -144,7 +144,7 @@ public class RPGcharacter implements Action,Sex {
             Attack(p1,p2);
             if(p2.CurrentHp <= 0){
                 System.out.println("+------------------------------------+");
-                System.out.println( "[ " + p1.name + " ]" + "is the winner!!");
+                System.out.println( "[ " + p1.name + " ]" + " is the winner!!");
                 System.out.println("+------------------------------------+");
             }else{
                 SelectBattle2(p1, p2);
@@ -170,7 +170,7 @@ public class RPGcharacter implements Action,Sex {
             Attack(p2,p1);
             if(p1.CurrentHp <= 0){
                 System.out.println("+------------------------------------+");
-                System.out.println( "[ " + p2.name + " ]" + "is the winner!!");
+                System.out.println( "[ " + p2.name + " ]" + " is the winner!!");
                 System.out.println("+------------------------------------+");
             }else {
                 SelectBattle1(p1, p2);
@@ -228,7 +228,7 @@ public class RPGcharacter implements Action,Sex {
 
     @Override
     public void Attack(RPGcharacter playerAT , RPGcharacter playerDF) {
-        if (wrist != null) {
+        if (playerAT.wrist != null) {
             dmg =  playerAT.damage + wrist.AtkBonus() - playerDF.defense;
         } else {
             dmg = playerAT.damage - playerDF.defense;
@@ -237,13 +237,17 @@ public class RPGcharacter implements Action,Sex {
             dmg = 0;
         }
         playerDF.CurrentHp = playerDF.CurrentHp - dmg;
-        if(wrist ==null){
+        if(playerDF.CurrentHp < 0) playerDF.CurrentHp = 0;
+
+        if(dmg == 0){
+            System.out.println("ATK : " + String.format("%.1f", dmg) + " dmg" + " [ " + playerDF.name  + " Defense higher than your damage"+ " ]");
+            System.out.println("[ " + playerDF.name + " ]" + " Defense : "+playerDF.defense);
+        }else if(playerAT.wrist == null){
             System.out.println("ATK : " + String.format("%.1f", dmg) + " dmg");
-            System.out.println("[ " + playerDF.name + " ]" + " HP : "+ playerDF.CurrentHp + " / " + playerDF.MaxHp +"\n");
-        }
-        if (wrist != null) {
+            System.out.println("[ " + playerDF.name + " ]" + " HP : "+ String.format("%.1f",playerDF.CurrentHp) + " / " + playerDF.MaxHp +"\n");
+        }else if (playerAT.wrist != null) {
             System.out.println("ATK + ATK bonus : +"+ String.format("%.1f", dmg) +" + "+ wrist.AtkBonus() + " dmg");
-            System.out.println("[ " + playerDF.name + " ]" + " HP : "+playerDF.CurrentHp + " / " + playerDF.MaxHp +"\n");
+            System.out.println("[ " + playerDF.name + " ]" + " HP : "+ String.format("%.1f",playerDF.CurrentHp) + " / " + playerDF.MaxHp +"\n");
         }
     }
 
@@ -258,7 +262,7 @@ public class RPGcharacter implements Action,Sex {
         CurrentHp += heal;
         if (CurrentHp >= MaxHp) {
             CurrentHp = MaxHp;
-            System.out.println("[ " + name + " ]" +" Healing +" + heal + " hp"+ " [Max Hp]"+"\n");
+            System.out.println("[ " + name + " ]" + " [Max Hp]"+"\n");
         }
         else if(clothing == null){
             System.out.println("[ " + name + " ]" +" Healing : " + heal + " hp"+ " --> HP : "+CurrentHp+"\n");
