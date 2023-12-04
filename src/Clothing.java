@@ -11,6 +11,10 @@ public class Clothing implements Accessories{
         bonus = 15 * (1+0.8*level);
         healBonus =(8*(1+0.02*level));
     }
+    Clothing(String name){
+        this(name,1);
+        //set level 1
+    }
 
     @Override
     public int getLevel() {

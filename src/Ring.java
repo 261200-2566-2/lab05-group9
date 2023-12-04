@@ -12,6 +12,10 @@ public class Ring implements Accessories{
         bonusSpeed = 0.7 * level;
     }
 
+    Ring(String name){
+        this(name,1);
+    }
+
     @Override
     public int getLevel() {
         return level;

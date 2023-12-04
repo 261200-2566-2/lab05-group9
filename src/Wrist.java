@@ -10,6 +10,9 @@ public class Wrist implements Accessories{
         bonus = 10 * (1+0.7*level);
         AtkBonus = (6 * (1+0.7*level));
     }
+    Wrist(String name){
+        this(name,1);
+    }
     @Override
     public int getLevel() {
         return level;

@@ -134,13 +134,13 @@ public class RPGcharacter implements Action,Sex {
             p1.SelectBattle1(p1,p2);
     }
 
-    public void Battle1_2(int x , RPGcharacter p1 , RPGcharacter p2){
+    private void Battle1_2(int x , RPGcharacter p1 , RPGcharacter p2){
         if (x < 1 || x > 3) {
             System.out.println("Error!!! " + "[ " + p1.name + " ]" + " you enter wrong choice");
             SelectBattle1(p1,p2);
         }
         else if( x == 1){
-            System.out.println("[ " + p1.name + " ] -->" +" attacks at " + "--> [ " +p2.name + " ]");
+            System.out.println("[ " + p1.name + " ] -->" +" attacks " + "--> [ " +p2.name + " ]");
             Attack(p1,p2);
             if(p2.CurrentHp <= 0){
                 System.out.println("+------------------------------------+");
@@ -160,13 +160,13 @@ public class RPGcharacter implements Action,Sex {
             SelectBattle2(p1,p2);
         }
     }
-    public void Battle2_1(int x , RPGcharacter p1 , RPGcharacter p2){
+    private void Battle2_1(int x , RPGcharacter p1 , RPGcharacter p2){
         if (x < 1 || x > 3) {
             System.out.println("Error!!! " + "[ " + p2.name + " ]" + " you enter wrong choice");
             SelectBattle2(p1,p2);
         }
         else if( x == 1){
-            System.out.println("[ " + p2.name + " ] -->" +" attacks at " + "--> [ " +p1.name + " ]");
+            System.out.println("[ " + p2.name + " ] -->" +" attacks " + "--> [ " +p1.name + " ]");
             Attack(p2,p1);
             if(p1.CurrentHp <= 0){
                 System.out.println("+------------------------------------+");
@@ -177,7 +177,7 @@ public class RPGcharacter implements Action,Sex {
             }
         }
         else if( x == 2){
-            System.out.println("[ " +p2.name + " ] -->" +" Heal ++ ");
+            System.out.println("[ " +p2.name + " ] -->" +" Heal++ ");
             p2.Heal();
             SelectBattle1(p1,p2);
         }
@@ -187,7 +187,8 @@ public class RPGcharacter implements Action,Sex {
         }
     }
 
-    public void SelectBattle1(RPGcharacter p1 , RPGcharacter p2){
+    private void SelectBattle1(RPGcharacter p1 , RPGcharacter p2){
+        System.out.println("---------------------------------------------------");
         System.out.println("[ " + p1.name + " ]" + " Choose your options ");
         System.out.println("[1] Attack [2] Heal [3] Don't do anything this turn ");
         Scanner bt = new Scanner(System.in);
@@ -195,7 +196,8 @@ public class RPGcharacter implements Action,Sex {
         int scBattle = bt.nextInt();
         Battle1_2(scBattle,p1,p2);
     }
-    public void SelectBattle2(RPGcharacter p1 , RPGcharacter p2){
+    private void SelectBattle2(RPGcharacter p1 , RPGcharacter p2){
+        System.out.println("---------------------------------------------------");
         System.out.println("[ " + p2.name + " ]" + " Choose your options ");
         System.out.println("[1] Attack [2] Heal [3] Don't do anything this turn ");
         Scanner bt = new Scanner(System.in);
@@ -236,8 +238,8 @@ public class RPGcharacter implements Action,Sex {
         if (dmg <= 0) {
             dmg = 0;
         }
-        playerDF.CurrentHp = playerDF.CurrentHp - dmg;
-        if(playerDF.CurrentHp < 0) playerDF.CurrentHp = 0;
+        playerDF.CurrentHp -=  dmg;
+        if(playerDF.CurrentHp < 0.5) playerDF.CurrentHp = 0;
 
         if(dmg == 0){
             System.out.println("ATK : " + String.format("%.1f", dmg) + " dmg" + " [ " + playerDF.name  + " Defense higher than your damage"+ " ]");
@@ -245,8 +247,8 @@ public class RPGcharacter implements Action,Sex {
         }else if(playerAT.wrist == null){
             System.out.println("ATK : " + String.format("%.1f", dmg) + " dmg");
             System.out.println("[ " + playerDF.name + " ]" + " HP : "+ String.format("%.1f",playerDF.CurrentHp) + " / " + playerDF.MaxHp +"\n");
-        }else if (playerAT.wrist != null) {
-            System.out.println("ATK + ATK bonus : +"+ String.format("%.1f", dmg) +" + "+ wrist.AtkBonus() + " dmg");
+        }else {
+            System.out.println("ATK + ATK bonus : "+ String.format("%.1f", dmg) +" [ " + String.format("%.1f",playerAT.damage - playerDF.defense) + " + "+ wrist.AtkBonus() + " dmg ]");
             System.out.println("[ " + playerDF.name + " ]" + " HP : "+ String.format("%.1f",playerDF.CurrentHp) + " / " + playerDF.MaxHp +"\n");
         }
     }
@@ -265,15 +267,15 @@ public class RPGcharacter implements Action,Sex {
             System.out.println("[ " + name + " ]" + " [Max Hp]"+"\n");
         }
         else if(clothing == null){
-            System.out.println("[ " + name + " ]" +" Healing : " + heal + " hp"+ " --> HP : "+CurrentHp+"\n");
+            System.out.println("[ " + name + " ]" +" Healing : " + heal + " hp"+ " --> HP : "+String.format("%.1f",CurrentHp)+"\n");
         }
-        else if(clothing != null){
-            System.out.println("[ " + name + " ]" +" Healing + Heal bonus : " + heal + "+" + clothing.gethealBonus() + " hp"+ " --> HP : "+CurrentHp+"\n");
+        else {
+            System.out.println("[ " + name + " ]" +" Healing + Heal bonus : " + heal + " + " + clothing.gethealBonus() + " hp"+ " --> HP : "+ String.format("%.1f",CurrentHp)+"\n");
         }
     }
 
     //set default player stat
-    public void PrintStatus() {
+    private void PrintStatus() {
         System.out.println("+-------------------------------------+");
         System.out.println("[ Status : " + name + " ]");
         System.out.println("+-------------------------------------+");
@@ -296,7 +298,7 @@ public class RPGcharacter implements Action,Sex {
 
     }
 
-    public void SelectJob(String job) {
+    private void SelectJob(String job) {
         switch (job) {
             case "1" -> {
                 CurrentJob.UpdateStatus("Swordsman", this);
@@ -330,7 +332,7 @@ public class RPGcharacter implements Action,Sex {
         CurrentJob.UpdateStatus(job, this);
     }
 
-    public void getEXP(double exp) {
+    private void getEXP(double exp) {
         CurrentExp = CurrentExp + exp;
         while (exp >= MaxExp) {
             if (CurrentExp >= MaxExp) {
@@ -349,20 +351,29 @@ public class RPGcharacter implements Action,Sex {
     }
 
     private void PrintCurrentItem() {
-        if (currentShield != null && currentSword != null) {
-            System.out.println("Sword: " + currentSword.getName() + " / " + "+" + String.format("%.1f", currentSword.getDamage()) + " Dmg" + " / " + "-" + String.format("%.1f", currentSword.DecreaseSped()) + " Sped");
-            System.out.println("Shield: " + currentShield.getName() + " / " + "+" + String.format("%.1f", currentShield.getDefense()) + " Def" + " / " + "-" + String.format("%.1f", currentShield.DecreaseSped()) + " Sped");
-        } else if (currentShield != null) {
-            System.out.println("Shield: " + currentShield.getName() + " / " + "+" + String.format("%.1f", currentShield.getDefense()) + " Def" + " / " + "-" + String.format("%.1f", currentShield.DecreaseSped()) + " Sped");
-        } else if (currentSword != null) {
-            System.out.println("Sword: " + currentSword.getName() + " / " + "+" + String.format("%.1f", currentSword.getDamage()) + " Dmg" + " / " + "-" + String.format("%.1f", currentSword.DecreaseSped()) + " Sped");
-        } else {
+        if(currentShield == null  && currentSword == null && ring == null &&  clothing == null && wrist == null ){
             System.out.println("No item using...");
-
+        }else{
+            if (currentShield != null) {
+                System.out.println("Shield: " + currentShield.getName() + " / " + "+" + String.format("%.1f", currentShield.getDefense()) + " Def" + " / " + "-" + String.format("%.1f", currentShield.DecreaseSped()) + " Sped");
+            }
+            if (currentSword != null) {
+                System.out.println("Sword: " + currentSword.getName() + " / " + "+" + String.format("%.1f", currentSword.getDamage()) + " Dmg" + " / " + "-" + String.format("%.1f", currentSword.DecreaseSped()) + " Sped");
+            }
+            if(ring != null){
+                System.out.println("Accessory type: " + ring.getType() + " / "+ " Name: " + ring.getName() + " / " + "bonus mana +" + ring.getManabonus() + " mana" + " / " + "bonus speed +" + ring.getSpeedbonus() + " Sped");
+            }
+            if(clothing != null){
+                System.out.println("Accessory type: " + clothing.getType() + " / " + " Name: " + clothing.getName() + " / " + "bonus defense +" + clothing.getDefBonus() + " def" + " / " + "bonus heal +" + clothing.gethealBonus() + " Hp");
+            }
+            if(wrist != null){
+                System.out.println("Accessory type: " + wrist.getType() + " / " + " Name: " + wrist.getName() + " / " + "bonus damage +" + wrist.getDamageBonus() + " dmg" + " / " + "bonus Atk +" + wrist.AtkBonus() + " dmg");
+            }
         }
+
     }
 
-    public static void PrintSword() {
+    private static void PrintSword() {
         System.out.println("                      Sword");
         System.out.println("---------------------------------------------------");
         System.out.printf("%-5s %-20s %-10s %-10s %-10s\n", " Order", " Name", " Level", " Damage", " Speed");
@@ -546,7 +557,6 @@ public class RPGcharacter implements Action,Sex {
 
     private void SelectSword() {
         Scanner sl = new Scanner(System.in);
-        System.out.println("Select your sword");
         PrintSword();
         System.out.print("[ " + name + " ]" +" Choose sword 1-5 or 6 to not using sword : ");
         int as = sl.nextInt();
@@ -555,7 +565,6 @@ public class RPGcharacter implements Action,Sex {
 
     private void SelectShield() {
         Scanner sl = new Scanner(System.in);
-        System.out.println("Select your shield");
         PrintShield();
         System.out.print("[ " + name + " ]" +" Choose shield 1-5 or 6 to not using shield : ");
         int as2 = sl.nextInt();
